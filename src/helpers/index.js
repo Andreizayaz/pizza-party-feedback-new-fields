@@ -1,2 +1,2 @@
-import { checkIsArray } from './functions';
-export { checkIsArray };
+import { checkIsArray, getRemoteData, getPartyData } from './functions';
+export { checkIsArray, getRemoteData, getPartyData };
