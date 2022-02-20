@@ -31,6 +31,7 @@ export function MainPizzaApp() {
     
     getData(URL_GUESTS_PARTY, URL_GUESTS_DIETS, getRemoteData);
     setIsLoaded(true);
+    setIsVisibleLoadingText(false);
   });
 
   return (
@@ -40,7 +41,9 @@ export function MainPizzaApp() {
           <MainPizzaAppContext.Provider value={{countDots}}>
             {isVisibleLoadingText && <RequestBlock />}
           </MainPizzaAppContext.Provider>
-          <PizzaTable/>
+          <MainPizzaAppContext.Provider value={{ partyGuests, setIsLoaded, setIsVisibleLoadingText, setPartyGuests}}>
+            { isLoaded && <PizzaTable/>}
+          </MainPizzaAppContext.Provider>
         </Container>
       </Section>
     </Main>

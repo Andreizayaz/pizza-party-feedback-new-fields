@@ -1,5 +1,6 @@
 table.pizza__table.table {
     margin: 0 auto;
+    margin-top: 50px;
     width: 70%;
     border: 4px solid rgba(255,255,255,.7);
 
@@ -34,11 +35,15 @@ th,td {
     }
 }
 
+tr {
+    cursor: pointer;
+}
+
 td {
     font-size: 25px;
     font-weight: 700;
     text-align: center;
-    cursor: pointer;
+    cursor: inherit;
 
     @media(max-width:700px){
       font-size: 20px;
@@ -46,6 +51,10 @@ td {
 }
 
 td:first-child {
+    width: 100px;
+}
+
+td:nth-child(2) {
     text-align: left;
 }
 
@@ -115,7 +124,22 @@ button.table__button:hover {
   border-radius: 100%;
 }
 
-.cell-with-emoji {
+.cell-with-emoji td:nth-child(2){
   display: flex;
   align-items: center;
+
+  &::before{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    content: '\2714';
+    margin-right: 10px;
+    height: 25px;
+    width: 25px;
+    color: green;
+    font-size: 20px;
+    font-weight: 700;
+    border: 3px solid green;
+    border-radius: 100%;
+  }
 }
