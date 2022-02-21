@@ -1,3 +1,4 @@
 import { MainPizzaAppContext } from './MainPizzaAppContext';
+import { StarRatingContext } from './StarRatingContext';
 
-export { MainPizzaAppContext }
+export { MainPizzaAppContext, StarRatingContext }

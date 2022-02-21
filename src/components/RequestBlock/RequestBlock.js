@@ -1,10 +1,9 @@
-import React, {useContext} from 'react';
+import React, {useState} from 'react';
 import { Container } from '../Container';
 import { Text } from '../Text';
-import { MainPizzaAppContext } from '../../context';
 
 export function RequestBlock() {
-  const { countDots } = useContext(MainPizzaAppContext);
+  const [countDots] = useState(3);
 
   return (
     <Container classes={["pizza-section__top", "request-block"]}>

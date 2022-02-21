@@ -11,6 +11,10 @@
     }
 }
 
+button, input[type="submit"]{
+    cursor: pointer;
+}
+
 .empty-form {
     color: rgba(127,255,212,.7);
     font-size: 20px;
@@ -80,7 +84,7 @@ textarea.text {
     font-family: inherit;
 }
 
-button.action-btn {
+.action-btn {
     width: 100%;
     font-size: 20px;
     text-transform: uppercase;
@@ -141,4 +145,21 @@ p.text {
     justify-content: center;
     margin-top: 20px;
     overflow: hidden
+}
+
+.error-text {
+    color: rgba(255,0,0);
+    font-weight: 700;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,128,0,.7);
 }

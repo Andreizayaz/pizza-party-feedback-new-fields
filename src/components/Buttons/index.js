@@ -1,4 +1,4 @@
 import { Button } from './Button';
-import { ActionButton } from './ActionButton';
+import { SubmitButton } from './SubmitButton';
 
-export { Button, ActionButton };
+export { Button, SubmitButton };
