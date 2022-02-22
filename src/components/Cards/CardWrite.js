@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Container } from '../Container';
 import { H3 } from '../Headings';
@@ -21,12 +21,25 @@ export function CardWrite({ content }) {
     mode: 'onChange',
   });
 
+  const [isValidPhone, setValidPhone] = useState(true);
   const { rating } = useContext(StarRatingContext);
   const { partyGuests, setIsLoaded, setIsVisibleTable, setIsVisibleCard } = useContext(MainPizzaAppContext);
 
   const clickCancel = () => {
     setIsVisibleCard(false);
     setIsVisibleTable(true);
+  }
+
+  const checkPhoneInput = ({ target }) => {
+    const value = target.value;
+    if (!value) return;
+    const digitsCount = value.split('').filter(item=>Number(item)).length;
+
+    if (digitsCount >= 3 && digitsCount <= 10) {
+      setValidPhone(true);
+    } else {
+      setValidPhone(false);
+    }
   }
 
   const submitData = (data) => {
@@ -51,19 +64,12 @@ export function CardWrite({ content }) {
         </Container>
           <StarRating classes={["stars"]} />
         <Container classes={["empty-form__row"]}>
-            <label htmlFor="name" className="label">phone</label>
-            <input id="name" type="text" className="text" {...register('phone', {
-              required: 'Field is required',
-              minLength: {
-                value: 3,
-                message: 'Minimum 3 symbols'
-              },
-              maxLength: {
-                value: 10,
-                message: 'Maximum 10 symbols'
-              },
+            <label htmlFor="phone" className="label">phone</label>
+            <input id="phone" type="text" onInput={(e)=>checkPhoneInput(e)} className="text" {...register('phone', {
+              required: 'Field is required'
             })} />
           {errors?.phone && <p className="error-text">{errors?.phone?.message}</p>}
+          {!isValidPhone && <p className="error-text">Phon number can contain only digits, '+' or whitespaces. Count digits in phone number must be from 3 to 10</p>}
         </Container>
         <Container classes={["empty-form__row"]}>
           <label htmlFor="comment" className="label">comment</label>
@@ -80,7 +86,7 @@ export function CardWrite({ content }) {
           })}></textarea>
           {errors?.comment && <p className="error-text">{errors?.comment?.message}</p>}
         </Container>
-        {isValid ? <SubmitButton classes={["action-btn"]} text='save' />:<Button classes={["action-btn"]} text='cancel' callback={clickCancel} /> }
+        {(isValid && isValidPhone) ? <SubmitButton classes={["action-btn"]} text='save' />:<Button classes={["action-btn"]} text='cancel' callback={clickCancel} /> }
       </form>
     </Container>
   )

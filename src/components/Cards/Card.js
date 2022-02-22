@@ -1,5 +1,6 @@
 import React, {useContext, useState} from 'react';
 import { Container } from '../Container';
+import { Button } from '../Buttons';
 import { CardWrite } from './CardWrite';
 import { CardRead } from './CardRead';
 import { MainPizzaAppContext } from '../../context';
@@ -11,15 +12,14 @@ export function Card() {
   const { setIsVisibleTable, setIsVisibleCard, cardContent } = useContext(MainPizzaAppContext);
   const isEmpty = Object.keys(cardContent.comments).length === 0;
 
-  const hideCard = ({ target }) => {
-    if (target.classList.contains("overlay")) {
+  const hideCard = () => {
       setIsVisibleCard(false);
       setIsVisibleTable(true);
-    }
   }
 
   return (
-    <Container classes={["overlay"]} clickCallback={hideCard}>
+    <Container classes={["overlay"]}>
+      <Button classes={["close-btn"]} callback={hideCard} text='X'/>
       <StarRatingContext.Provider value={{
       countStars,
       rating: isEmpty ? rating : cardContent.comments.rating,

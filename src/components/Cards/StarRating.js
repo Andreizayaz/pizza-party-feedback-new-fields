@@ -4,7 +4,6 @@ import { checkIsArray } from '../../helpers';
 import { StarRatingContext } from '../../context';
 
 export function StarRating({ classes }) {
-  debugger
   const { countStars, rating, setRating, isReadOnly } = useContext(StarRatingContext);
 
   if (isReadOnly) {
