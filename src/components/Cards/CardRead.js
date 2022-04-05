@@ -7,7 +7,8 @@ import { Button } from '../Buttons';
 import { MainPizzaAppContext } from '../../context';
 
 export function CardRead({ cardContent }) {
-  const { name, comments: { phone, comment } } = cardContent;
+  // const { name, comments: { phone, comment } } = cardContent;
+  const { name, comments } = cardContent;
   const { partyGuests, setIsLoaded, setIsVisibleTable, setIsVisibleCard } = useContext(MainPizzaAppContext);
 
   const deleteUser = () => {
@@ -27,15 +28,15 @@ export function CardRead({ cardContent }) {
           <H3 classes={["name-field__title"]} text='name'/>
           <Text classes={["name-field__name"]} text={name}/>
         </Container>
-          <StarRating classes={["stars"]}/>
-        <Container classes={["empty-form__row"]}>
-          <label className="label">phone</label>
-          <Text classes={["text"]} text={phone}/>
-        </Container>
-        <Container classes={["empty-form__row"]}>
-          <label for="comment" className="label">comment</label>
-          <Text classes={["text"]} text={comment}/>
-        </Container>
+        <StarRating classes={["stars"]} />
+        {
+          Object.entries(comments).filter(item => !item.includes('rating')).map(item =>
+            <Container classes={["empty-form__row"]}>
+              <label className="label">{item[0]}</label>
+              <Text classes={["text"]} text={item[1]}/>
+            </Container>
+            )
+        }
       </Container>
     </Container>
   )
