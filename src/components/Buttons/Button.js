@@ -3,6 +3,6 @@ import { checkIsArray } from '../../helpers';
 
 export function Button({classes, text, callback}) {
   return (
-    <button className={checkIsArray(classes)} onClick={callback}>{text}</button>
+    <button data-testid='button' className={checkIsArray(classes)} onClick={callback}>{text}</button>
   )
 }
